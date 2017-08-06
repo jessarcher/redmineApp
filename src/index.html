@@ -5,25 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hello World!</title>
-    <script type="text/javascript" src="js/lib.js"></script>
-    <link rel="stylesheet" href="css/lib.css" />
+    <!-- Insert this line above script imports  -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script type="text/javascript" src="build/js/lib.js"></script>
+    <link rel="stylesheet" href="build/css/lib.css" />
   </head>
   <body>
-      <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-md-offset-4">
-                    <form class="form-signin">
-                        <h2 class="form-signin-heading">Please sign in</h2>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="url" placeholder="Url">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="key" placeholder="Key">
-                        </div>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+    <div id="page">
+        <script>
+            $(document).ready(function() {
+                app.showRootPage();
+            });
+        </script>
+    </div>
   </body>
 </html>

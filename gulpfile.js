@@ -13,7 +13,7 @@ gulp.task('css', function() {
         'node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
     ])
     .pipe(concat('lib.css'))
-    .pipe(gulp.dest('src/css'));
+    .pipe(gulp.dest('src/build/css'));
 });
 
 // Concatenate & Minify JS
@@ -21,17 +21,25 @@ gulp.task('scripts', function() {
     return gulp.src([
         'node_modules/jquery/dist/jquery.min.js',
         'node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
+        'node_modules/handlebars/dist/handlebars.min.js',
         'js/*.js'
     ])
     .pipe(concat('lib.js'))
-    .pipe(gulp.dest('src/js'));
+    .pipe(gulp.dest('src/build/js'));
 });
  
 gulp.task('bootstrap', function() {
     return gulp.src([
         'node_modules/bootstrap/dist/fonts/**/*'
     ])
-    .pipe(gulp.dest('src/fonts'));
+    .pipe(gulp.dest('src/build/fonts'));
+});
+
+gulp.task('templates', function() {
+    return gulp.src([
+        'templates/*'
+    ])
+    .pipe(gulp.dest('src/build/templates'));
 });
 
 // Watch Files For Changes
@@ -41,4 +49,4 @@ gulp.task('bootstrap', function() {
 // });
 
 // Default Task
-gulp.task('default', ['css', 'scripts', 'bootstrap']);
+gulp.task('default', ['css', 'scripts', 'bootstrap', 'templates']);
