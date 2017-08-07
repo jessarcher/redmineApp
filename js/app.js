@@ -1,15 +1,19 @@
 var app = {
     showRootPage: function() {
-        // service.loadConfig();
+        service.loadConfig();
         if (service.url === '') {
             app.showTemplate('loginForm');
         } else {
             app.showHomePage();
         }
     },
-    showTemplate: function(name) {
-        $.get('build/templates/' + name + '.html', function(data) {
-            $('#page').html(data);
+    showTemplate: function(name, options) {
+        $.get('build/templates/' + name + '.html', function(source) {
+            if (typeof options !== 'undefined') {
+                var template = Handlebars.compile(source);
+                source = template(options);
+            }
+            $('#page').html(source);
         });
     },
     login: function() {
@@ -20,6 +24,8 @@ var app = {
         app.showHomePage();
     },
     showHomePage: function() {
-        app.showTemplate('homePage');
+        service.getCurrentUser(function(data) {
+            app.showTemplate('homePage', { currentUser: data.user });
+        });
     }
 };
