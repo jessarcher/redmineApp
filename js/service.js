@@ -10,6 +10,7 @@ var service = {
     setConfig: function(url, key) {
         localStorage.url = url;
         localStorage.key = key;
+        service.loadConfig();
     },
     getCurrentUser: function() {
         $.get(
