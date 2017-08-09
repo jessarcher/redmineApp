@@ -1,0 +1,9 @@
+Projects
+<div class="list-group">
+{{#each projectList.projects}}
+    <a class="list-group-item" onclick="project.show({{this.id}})">
+        <h4 class="list-group-item-heading">{{this.name}}</h4>
+        <p class="list-group-item-text">{{this.description}}</p>
+    </a>
+{{/each}}
+</div>

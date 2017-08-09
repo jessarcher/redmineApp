@@ -17,5 +17,11 @@ var service = {
             service.url + '/users/current.json?key=' + service.key,
             callback
         );
+    },
+    getProjects: function(callback) {
+        $.get(
+            service.url + '/projects.json?key=' + service.key,
+            callback
+        );
     }
 };
