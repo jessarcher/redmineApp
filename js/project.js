@@ -1,5 +1,7 @@
 var project = {
     show: function(id) {
-        console.log(id);
+        service.getProjectIssues(id, function(issueList) {
+            app.showTemplate('projectIssueList', { issueList: issueList}, 'pageContent');
+        });
     }
 };

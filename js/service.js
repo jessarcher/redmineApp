@@ -2,7 +2,7 @@ var service = {
     url: '',
     key: '',
     loadConfig: function() {
-        if (service.url === '') {
+        if (service.url === '' && typeof localStorage.url !== 'undefined') {
             service.url = localStorage.url;
             service.key = localStorage.apiKey;
         }
@@ -21,6 +21,12 @@ var service = {
     getProjects: function(callback) {
         $.get(
             service.url + '/projects.json?key=' + service.key,
+            callback
+        );
+    },
+    getProjectIssues: function(projectId, callback) {
+        $.get(
+            service.url + '/issues.json?key=' + service.key + '&project_id=' + projectId,
             callback
         );
     }

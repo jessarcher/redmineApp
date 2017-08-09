@@ -35,9 +35,16 @@ var app = {
             app.showTemplate('homePage', { currentUser: data.user }, function(source) {
                 $('#page').html(source);
                 service.getProjects(function(projectList) {
-                    app.showTemplate('projectList', { projectList: projectList }, 'projects');
+                    app.showTemplate('projectList', { projectList: projectList }, 'pageContent');
                 });
             });
         });
+    },
+    logout: function() {
+        service.url = '';
+        service.apiKey = '';
+        localStorage.removeItem('url');
+        localStorage.removeItem('apiKey');
+        app.showRootPage();
     }
 };
