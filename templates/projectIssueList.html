@@ -1,0 +1,26 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Tracker</th>
+            <th>Status</th>
+            <th>Priority</th>
+            <th>Subject</th>
+            <th>Author</th>
+            <th>Assignee</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each issueList.issues}}
+            <tr>
+                <td>{{this.id}}</td>
+                <td>{{this.tracker.name}}</td>
+                <td>{{this.status.name}}</td>
+                <td>{{this.priority.name}}</td>
+                <td>{{this.subject}}</td>
+                <td>{{this.author.name}}</td>
+                <td>{{this.assigned_to.name}}</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
