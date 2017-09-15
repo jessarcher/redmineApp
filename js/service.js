@@ -12,21 +12,39 @@ var service = {
         localStorage.apiKey = key;
         service.loadConfig();
     },
-    getCurrentUser: function(callback) {
+    getCurrentUser: function(callback, params) {
+        if (typeof params === 'undefined') {
+            params = '';
+        } else {
+            params = '&' + params;
+        }
+
         $.get(
-            service.url + '/users/current.json?key=' + service.key,
+            service.url + '/users/current.json?key=' + service.key + params,
             callback
         );
     },
-    getProjects: function(callback) {
+    getProjects: function(offset, callback) {
         $.get(
-            service.url + '/projects.json?key=' + service.key,
+            service.url + '/projects.json?key=' + service.key+'&offset=' + offset + '&limit=50',
             callback
         );
     },
     getProjectIssues: function(projectId, callback) {
         $.get(
             service.url + '/issues.json?key=' + service.key + '&project_id=' + projectId,
+            callback
+        );
+    },
+    getMemberships: function(id, callback) {
+        $.get(
+            service.url + '/projects/'+ id + '/memberships.json?key=' + service.key + '&limit=100',
+            callback
+        );
+    },
+    getIssue: function(id, callback) {
+        $.get(
+            service.url + '/issues/' + id + '.json?key=' + service.key,
             callback
         );
     }

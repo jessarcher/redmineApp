@@ -32,9 +32,10 @@ var app = {
     },
     showHomePage: function() {
         service.getCurrentUser(function(data) {
+            localStorage.currentUserId = data.user.id;
             app.showTemplate('homePage', { currentUser: data.user }, function(source) {
                 $('#page').html(source);
-                service.getProjects(function(projectList) {
+                service.getProjects(0, function(projectList) {
                     app.showTemplate('projectList', { projectList: projectList }, 'pageContent');
                 });
             });
@@ -48,3 +49,31 @@ var app = {
         app.showRootPage();
     }
 };
+
+Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
+
+    switch (operator) {
+        case '==':
+            return (v1 == v2) ? options.fn(this) : options.inverse(this);
+        case '===':
+            return (v1 === v2) ? options.fn(this) : options.inverse(this);
+        case '!=':
+            return (v1 != v2) ? options.fn(this) : options.inverse(this);
+        case '!==':
+            return (v1 !== v2) ? options.fn(this) : options.inverse(this);
+        case '<':
+            return (v1 < v2) ? options.fn(this) : options.inverse(this);
+        case '<=':
+            return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+        case '>':
+            return (v1 > v2) ? options.fn(this) : options.inverse(this);
+        case '>=':
+            return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+        case '&&':
+            return (v1 && v2) ? options.fn(this) : options.inverse(this);
+        case '||':
+            return (v1 || v2) ? options.fn(this) : options.inverse(this);
+        default:
+            return options.inverse(this);
+    }
+});

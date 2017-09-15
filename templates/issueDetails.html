@@ -1,0 +1,11 @@
+<button id="start_time_btn" type="button" onclick="issues.startTime()">Start</button>
+<button id="start_time_btn" type="button" onclick="issues.stopTime()">Stop</button>
+<input type="hidden" id="start_time" value="" />
+<h3>{{issue.subject}}</h3>
+<div class="row">
+    <label class="col-md-3 control-label">Status</label>
+    <div class="col-md-3">{{issue.status.name}}</div>
+    <label class="col-md-3 control-label">Assigned</label>
+    <div class="col-md-3">{{issue.assigned_to.name}}</div>
+</div>
+<p>{{issue.description}}</p>

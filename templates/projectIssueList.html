@@ -13,7 +13,7 @@
     <tbody>
         {{#each issueList.issues}}
             <tr>
-                <td>{{this.id}}</td>
+                <td><a href="javascript: issues.edit({{this.id}})">{{this.id}}</a></td>
                 <td>{{this.tracker.name}}</td>
                 <td>{{this.status.name}}</td>
                 <td>{{this.priority.name}}</td>
