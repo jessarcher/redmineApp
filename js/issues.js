@@ -12,18 +12,24 @@ var issues = {
         var d = new Date();
         issues.startTime = '00:' + (d.getHours() + 1);
         issues.startTime += ':' + d.getMinutes();
+        issues.startTime = Timr.timeToSeconds(issues.startTime)
         issues.timer = Timr(issues.startTime, { formatOutput: 'hh:mm:ss', 'countdown' : false });
         issues.timer.ticker(({ formattedTime, percentDone }) => {
-            var startTime = Timr.timeToSeconds(issues.startTime);
             var endTime = Timr.timeToSeconds(formattedTime);
-            var diff = endTime - startTime;
+            var diff = endTime - issues.startTime;
             $('#timer').html('' + Timr.formatTime(diff, 'hh:mm:ss').formattedTime);
         });
         issues.timer.start();
+        $('#start_time_btn').addClass('hidden');
+        $('#stop_time_btn').removeClass('hidden');
     },
     stopTime: function() {
-        var d = new Date();
-        var endTime = d.getTime();
-        var startTime = parseInt($('#start_time').val());
+        var endTime = issues.timer.getCurrentTime();
+        var timeTaken = endTime - issues.startTime;
+        issues.timer.destroy();
+        console.log(timeTaken);
+        $('#start_time_btn').removeClass('hidden');
+        $('#stop_time_btn').addClass('hidden');
+        $('#timer').html('');
     }
 };

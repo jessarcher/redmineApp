@@ -1,7 +1,11 @@
-<button id="start_time_btn" type="button" onclick="issues.startTime()">Start</button>
-<button id="start_time_btn" type="button" onclick="issues.stopTime()">Stop</button>
+<div class="row">
+    <div class="col-md-4" id="timer"></div>
+    <div class="col-md-4">
+        <button id="start_time_btn" type="button" onclick="issues.startTime()">Start</button>
+        <button id="stop_time_btn" class="hidden" type="button" onclick="issues.stopTime()">Stop</button>
+    </div>
+</div>
 <div id="timer"></div>
-<input type="hidden" id="start_time" value="" />
 <h3>{{issue.subject}}</h3>
 <div class="row">
     <label class="col-md-3 control-label">Status</label>
