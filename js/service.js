@@ -30,9 +30,9 @@ var service = {
             callback
         );
     },
-    getProjectIssues: function(projectId, callback) {
+    getIssues: function(params, callback) {
         $.get(
-            service.url + '/issues.json?key=' + service.key + '&project_id=' + projectId,
+            service.url + '/issues.json?key=' + service.key + '&' + params,
             callback
         );
     },
@@ -47,5 +47,15 @@ var service = {
             service.url + '/issues/' + id + '.json?key=' + service.key,
             callback
         );
+    },
+    createTimeEntry: function(issueId, timeData, callback) {
+        timeData['key'] = service.key;
+        $.post({
+            type: 'POST',
+            url: service.url + '/time_entries.json',
+            data: timeData,
+            success: callback,
+            dataType: 'json'
+        });
     }
 };

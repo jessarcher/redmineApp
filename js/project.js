@@ -1,7 +1,7 @@
 var project = {
     show: function(id) {
-        service.getProjectIssues(id, function(issueList) {
-            app.showTemplate('projectIssueList', { issueList: issueList}, 'pageContent');
+        service.getIssues('project_id=' + id, function(issueList) {
+            app.showTemplate('projectIssueList', { issueList: issueList, projectid: id}, 'pageContent');
         });
     },
     nextList: function(count, limit, offset) {

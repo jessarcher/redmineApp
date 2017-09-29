@@ -1,9 +1,10 @@
 var issues = {
+    currentId: null,
     timer : null,
     startTime: null,
     edit: function(id) {
         service.getIssue(id, function(result) {
-            app.showTemplate('issueDetails', { issue: result.issue }, function(result) {
+            app.showTemplate('issueDetails', { issue: result.issue, tab: 'all' }, function(result) {
                 $('#pageContent').html(result);
             });
         });
@@ -31,5 +32,11 @@ var issues = {
         $('#start_time_btn').removeClass('hidden');
         $('#stop_time_btn').addClass('hidden');
         $('#timer').html('');
+        // timeEntry.create(issues.currentId, timeTaken);
+    },
+    listAssigned: function() {
+        service.getIssues('assigned_to_id=me&status_id=open', function(issueList) {
+            app.showTemplate('projectIssueList', { issueList: issueList, tab: 'assigned'}, 'pageContent');
+        });
     }
 };
