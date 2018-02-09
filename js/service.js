@@ -49,11 +49,13 @@ var service = {
         );
     },
     createTimeEntry: function(issueId, timeData, callback) {
-        timeData['key'] = service.key;
         $.post({
             type: 'POST',
             url: service.url + '/time_entries.json',
-            data: timeData,
+            data: {
+                key: service.key,
+                time_entry: timeData
+            },
             success: callback,
             dataType: 'json'
         });
