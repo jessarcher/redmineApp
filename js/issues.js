@@ -37,7 +37,7 @@ var issues = {
         $('#start_time_btn').removeClass('hidden');
         $('#stop_time_btn').addClass('hidden');
         $('#timer').html('');
-        timeEntry.create(issues.currentId, timeTaken);
+        timeEntry.create(issues.currentId, hoursTaken);
     },
     listAssigned: function() {
         service.getIssues('assigned_to_id=me&status_id=open', function(issueList) {
