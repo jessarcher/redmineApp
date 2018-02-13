@@ -19,9 +19,9 @@
             </ul>
             <form class="navbar-form navbar-left">
                 <div class="form-group">
-                <input type="text" class="form-control" placeholder="Issue Id">
+                <input type="text" id="issue_id" class="form-control" placeholder="Issue Id">
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="button" class="btn btn-default" onclick="issues.openIssue()">Search</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#" onclick="app.logout()">Logout</a></li>

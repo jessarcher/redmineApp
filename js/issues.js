@@ -9,6 +9,9 @@ var issues = {
             });
         });
     },
+    openIssue: function() {
+        issues.edit($('#issue_id').val());
+    },
     showStartTime: function() {
         var d = new Date();
         issues.startTime = '00:' + (d.getHours() + 1);
